@@ -1,0 +1,30 @@
+.success {
+  color: green;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.error {
+  color: red;
+  font-size: 20px;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.blog-style {
+  border: 1px solid black;
+
+}
+
+body {
+  margin: 20px;
+}
+
+.list-style {
+  list-style: none;
+  margin-left: -35px;
+}
+.btn-likes-flex{
+  display: flex;
+}
