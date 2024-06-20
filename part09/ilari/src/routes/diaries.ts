@@ -17,8 +17,15 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.post("/", (_req, res) => {
-  res.send("Sabing a diary!");
+router.post("/", (req, res) => {
+  const {date, weather, visibility, comment} = req.body;
+  const addedEntry = diaryService.addEntry(
+    date,
+    weather,
+    visibility,
+    comment,
+  )
+  res.send(addedEntry);
 });
 
 export default router;
