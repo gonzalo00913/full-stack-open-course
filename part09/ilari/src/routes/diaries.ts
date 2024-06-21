@@ -19,13 +19,13 @@ router.get("/:id", (req, res) => {
 
 router.post("/", (req, res) => {
   const {date, weather, visibility, comment} = req.body;
-  const addedEntry = diaryService.addEntry(
+  const newDiaryEntry = diaryService.addEntry(
     date,
     weather,
     visibility,
     comment,
   )
-  res.send(addedEntry);
+  res.send(newDiaryEntry);
 });
 
 export default router;
