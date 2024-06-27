@@ -7,16 +7,35 @@ const App = () => {
   const courseParts: CoursePart[] = [
     {
       name: "Fundamentals",
-      exerciseCount: 10
+      exerciseCount: 10,
+      description: "This is an awesome course part",
+      kind: "basic"
     },
     {
       name: "Using props to pass data",
-      exerciseCount: 7
+      exerciseCount: 7,
+      groupProjectCount: 3,
+      kind: "group"
+    },
+    {
+      name: "Basics of type Narrowing",
+      exerciseCount: 7,
+      description: "How to go from unknown to string",
+      kind: "basic"
     },
     {
       name: "Deeper type usage",
-      exerciseCount: 14
-    }
+      exerciseCount: 14,
+      description: "Confusing description",
+      backgroundMaterial: "https://type-level-typescript.com/template-literal-types",
+      kind: "background"
+    },
+    {
+      name: "TypeScript in frontend",
+      exerciseCount: 10,
+      description: "a hard part",
+      kind: "basic",
+    },
   ];
 
   const totalExercises = courseParts.reduce((sum, part) => sum + part.exerciseCount, 0);
@@ -24,20 +43,41 @@ const App = () => {
   return (
     <div>
       <h1>{courseName}</h1>
-      <p>
-        {courseParts[0].name} {courseParts[0].exerciseCount}
-      </p>
-      <p>
-        {courseParts[1].name} {courseParts[1].exerciseCount}
-      </p>
-      <p>
-        {courseParts[2].name} {courseParts[2].exerciseCount}
-      </p>
-      <p>
-        Number of exercises {totalExercises}
-      </p>
+      {courseParts.map((part, index) => {
+        switch (part.kind) {
+          case "basic":
+            return (
+              <p key={index}>
+                {part.name} {part.exerciseCount} <br />
+                <i>{part.description}</i>
+              </p>
+            );
+          case "group":
+            return (
+              <p key={index}>
+                {part.name} {part.exerciseCount} <br />
+                project exercises {part.groupProjectCount}
+              </p>
+            );
+          case "background":
+            return (
+              <p key={index}>
+                {part.name} {part.exerciseCount} <br />
+                <i>{part.description}</i> <br />
+                background material: <a href={part.backgroundMaterial}>{part.backgroundMaterial}</a>
+              </p>
+            );
+          default:
+            return assertNever(part);
+        }
+      })}
+      <p>Number of exercises {totalExercises}</p>
     </div>
   );
+};
+
+const assertNever = (value: never): never => {
+  throw new Error(`Unhandled discriminated union member: ${JSON.stringify(value)}`);
 };
 
 export default App;
