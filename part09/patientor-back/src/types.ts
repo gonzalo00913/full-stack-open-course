@@ -1,7 +1,11 @@
+
 export interface DiagnosesEntry {
   code: string;
   name: string;
   latin?: string;
+}
+
+export interface Entry {
 }
 
 export type NonSensitivePatientEntry = Omit<PatientEntry, "ssn">
@@ -13,4 +17,5 @@ export interface PatientEntry {
   gender: string;
   ssn: string;
   dateOfBirth: string;
+  entries: Entry[]
 }
