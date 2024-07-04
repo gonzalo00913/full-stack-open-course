@@ -10,7 +10,7 @@ import { DiagnosesEntry, PatientEntry, NonSensitivePatientEntry} from "../src/ty
 const diagnoses: DiagnosesEntry[] = diagnosesData as DiagnosesEntry[]
 const patient: PatientEntry[] = patientsData as PatientEntry[]
 
-const getDiagnoses = (): DiagnosesEntry[] => {
+const getDiagnoses = ():DiagnosesEntry[] => {
     return diagnoses
 }
 
@@ -24,6 +24,10 @@ const getPatients = (): NonSensitivePatientEntry[] => {
     entries
   }))
 }
+
+const findById = (id: string): PatientEntry | undefined => {
+  return patient.find(patient => patient.id === id);
+};
 
 /* const addPatient = (name: string, dateOfBirth: string, ssn: string, gender: string, occupation: string): PatientEntry => {
   const newPatientEntry = {
@@ -42,5 +46,6 @@ const getPatients = (): NonSensitivePatientEntry[] => {
 export default {
   getDiagnoses,
   getPatients,
+  findById
   //addPatient
 }

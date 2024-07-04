@@ -13,6 +13,7 @@ server.use(express.json());
 server.use("/diagnoses", diagnosesRouter)
 server.use("/patients", patientsRouter)
 
+
 const PORT = 3001
 
 server.listen(PORT,() => {
